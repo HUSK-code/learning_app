@@ -1,38 +1,47 @@
-package com.example.domain.model.article;
+package domain.model.article;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public final class ArticleId {
+// 記事を一意に識別するためのIDを表現する Value Object
+public class ArticleId {
     private final String value;
 
-    private ArticleId(String value) {
+    public ArticleId(String value) {
         if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("ArticleIdは空にできません。");
+            throw new IllegalArgumentException("記事Idは必須です");
+        }
+
+        try {
+            UUID.fromString(value);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("記事IDの形式が不正です：" + value);
         }
         this.value = value;
     }
 
-    public static ArticleId newId() {
+    // 新しい記事IDを生成する静的ファクトリメソッド
+    public static ArticleId generateNewId() {
         return new ArticleId(UUID.randomUUID().toString());
     }
 
-    public static ArticleId reconstruct(String value) {
-        return new ArticleId(value);
-    }
-
+    // 記事IDを取得するためのメソッド
     public String getValue() {
         return value;
     }
 
+    // 値による等価性を担保するためのメソッド
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o)
+            return true;
+        if (o == null || getClass() != o.getClass())
+            return false;
         ArticleId articleId = (articleId) o;
         return Object.equals(value, articleId.value);
     }
 
+    // ハッシュ化メソッド
     @Override
     public int hashCode() {
         return Object.hash(value);
@@ -40,6 +49,6 @@ public final class ArticleId {
 
     @Override
     public String toString() {
-        return "ArticleId{value='" + value + "'}";
+        return value;
     }
 }
