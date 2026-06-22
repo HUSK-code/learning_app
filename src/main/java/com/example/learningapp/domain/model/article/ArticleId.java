@@ -1,4 +1,4 @@
-package domain.model.article;
+package com.example.learningapp.domain.model.article;
 
 import java.util.Objects;
 import java.util.UUID;
@@ -37,14 +37,14 @@ public class ArticleId {
             return true;
         if (o == null || getClass() != o.getClass())
             return false;
-        ArticleId articleId = (articleId) o;
-        return Object.equals(value, articleId.value);
+        ArticleId articleId = (ArticleId) o;
+        return Objects.equals(value, articleId.value);
     }
 
     // ハッシュ化メソッド
     @Override
     public int hashCode() {
-        return Object.hash(value);
+        return Objects.hash(value);
     }
 
     @Override
