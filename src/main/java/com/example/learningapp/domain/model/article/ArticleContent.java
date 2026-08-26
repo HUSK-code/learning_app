@@ -4,12 +4,11 @@ import java.util.Objects;
 
 public class ArticleContent {
     private final String value;
-    private final ContentType type;
 
     private static final int MAX_LENGTH = 1000;
 
-    public ArticleContent(String value, ContentType type) {
-        if (type == null) {
+    public ArticleContent(String value) {
+        if (value == null) {
             throw new IllegalArgumentException("コンテンツタイプは必須項目です");
         }
 
@@ -18,15 +17,10 @@ public class ArticleContent {
         }
 
         this.value = value;
-        this.type = type;
     }
 
     public String getValue() {
         return value;
-    }
-
-    public ContentType getType() {
-        return type;
     }
 
     public boolean isEmpty() {
@@ -40,11 +34,11 @@ public class ArticleContent {
         if (o == null || getClass() != o.getClass())
             return false;
         ArticleContent that = (ArticleContent) o;
-        return Objects.equals(value, that.value) && type == that.type;
+        return Objects.equals(value, that.value);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(value, type);
+        return Objects.hash(value);
     }
 }

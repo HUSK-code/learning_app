@@ -179,7 +179,7 @@ public class Article {
         return updatedAt;
     }
 
-    public LocalDateTime publishedAt() {
+    public LocalDateTime getPublishedAt() {
         return publishedAt;
     }
 
@@ -199,18 +199,3 @@ public class Article {
         return id.hashCode();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
