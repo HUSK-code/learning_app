@@ -17,19 +17,19 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserJpaEntity {
     @Id
-    @Column(name = "id", length = 36, nullable =false)
+    @Column(name = "id", length = 50, nullable =false)
     private String id;
 
-        @Column(name = "username", length = 50, nullable = false, unique = true)
+    @Column(name = "username", length = 50, nullable = false, unique = true)
     private String username;
 
-    @Column(name = "email", length = 255, nullable = false, unique = true)
+    @Column(name = "email", length = 50, nullable = false, unique = true)
     private String email;
 
-    @Column(name = "password_hash", length = 255, nullable = false)
+    @Column(name = "password", length = 255, nullable = false)
     private String passwordHash;
 
-    @Column(name = "display_name", length = 100)
+    @Column(name = "display_name", length = 25)
     private String displayName;
 
     @Column(name = "bio", columnDefinition = "TEXT")
@@ -44,16 +44,16 @@ public class UserJpaEntity {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-        public UserJpaEntity(
-            String id,
-            String username,
-            String email,
-            String passwordHash,
-            String displayName,
-            String bio,
-            String avatarUrl,
-            LocalDateTime createdAt,
-            LocalDateTime updatedAt) {
+    public UserJpaEntity(
+        String id,
+        String username,
+        String email,
+        String passwordHash,
+        String displayName,
+        String bio,
+        String avatarUrl,
+        LocalDateTime createdAt,
+        LocalDateTime updatedAt) {
         this.id           = id;
         this.username     = username;
         this.email        = email;

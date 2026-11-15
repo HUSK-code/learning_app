@@ -13,7 +13,6 @@ public interface UserRepository {
      * 
      * @param user 保存するユーザー
      * @return 保存後のユーザー
-     * 
      */
     User save(User user);
 
@@ -22,9 +21,8 @@ public interface UserRepository {
      * 
      * @param userId
      * @return ユーザーが存在する場合は該当ユーザー、存在しない場合は空のOptional
-     * 
     */
-    Optional<UserId> findById(UserId id);
+    Optional<User> findById(UserId id);
 
     /**
      * ユーザー名でユーザーを検索する
@@ -35,7 +33,7 @@ public interface UserRepository {
      * @param username ユーザー名
      * @return ユーザーが存在する場合は該当ユーザー、存在しない場合は空のOptional
      */
-    Optional<Username> findByUsername(Username username);
+    Optional<User> findByUsername(Username username);
 
     /**
      * メールアドレスでユーザーを検索する
@@ -46,7 +44,7 @@ public interface UserRepository {
      * @param email メールアドレス
      * @return ユーザーが存在する場合はユーザー、存在しない場合は空のOptional
      */
-    Optional<Email> findByEmail(Email email);
+    Optional<User> findByEmail(Email email);
 
     /**
      * ユーザー名がすでに使用されているか確認する

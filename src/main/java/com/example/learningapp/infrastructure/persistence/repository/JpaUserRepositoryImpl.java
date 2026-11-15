@@ -14,7 +14,6 @@ import java.util.Optional;
 
 /**
  * UserRepositoryインターフェースのJPA実装
- *
  */
 @Repository
 @RequiredArgsConstructor
@@ -22,13 +21,11 @@ public class JpaUserRepositoryImpl implements UserRepository {
 
     // Spring Data JPAの自動実装インターフェース
     private final JpaUserRepository jpaUserRepository;
-
     // Domain Entity ⇔ JPA Entity の変換を担当
     private final UserMapper userMapper;
 
     /**
      * ユーザーを保存する
-     *
      */
     @Override
     public User save(User user) {
@@ -39,7 +36,6 @@ public class JpaUserRepositoryImpl implements UserRepository {
 
     /**
      * IDでユーザーを検索する
-     *
      */
     @Override
     public Optional<User> findById(UserId id) {
@@ -48,17 +44,17 @@ public class JpaUserRepositoryImpl implements UserRepository {
 
     @Override
     public Optional<User> findByUsername(Username username) {
-        return jpaUserRepository.findByUsername(username).map(userMapper::toDomainEntity);
+        return jpaUserRepository.findByUsername(username.getValue()).map(userMapper::toDomainEntity);
     }
 
     @Override
-    public Optional<Email> findByEmail(Email email) {
-        return jpaUserRepository.findByEmail(email).map(userMapper::toDomainEntity);
+    public Optional<User> findByEmail(Email email) {
+        return jpaUserRepository.findByEmail(email.getValue()).map(userMapper::toDomainEntity);
     }
 
     @Override
     public boolean existsByUsername(Username username) {
-        return jpaUserRepository.existsByUsername(username);
+        return jpaUserRepository.existsByUsername(username.getValue());
     }
 
     @Override
